@@ -1,8 +1,8 @@
-import { Application, Router } from "https://deno.land/x/oak/mod.ts"; //Foi retirado o uso do npm para evitar erros entre o Node e Deno
+import { Application, Router } from "https://deno.land/x/oak/mod.ts"; //Foi retirado o uso do npm para evitar erros entre o Node e Deno. Considere o Deno como um compilador.
 import { booksModel } from "./booksModel.ts";
 
 let fakeDB: booksModel[] = []; // Banco de dados vazio para armazenar as operações CRUD, isso implica dizer que o servidor armazena os dados nele mesmo, ou seja, quando o servidor é finalizado, os dados vão junto.
-
+const app = new Application();
 const router = new Router();
 
 router
@@ -21,8 +21,6 @@ router
 .delete("/delete/:id", (context) => {
 
 })
-
-const app = new Application();
 
 app.use(async (ctx ,next) => { // Logando o middleware
 
